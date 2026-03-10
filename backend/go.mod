@@ -1,4 +1,4 @@
-module github.com/richer/q-workflow
+module github.com/richer421/q-workflow
 
 go 1.25.5
 

@@ -3,7 +3,7 @@ package logger
 import (
 	"os"
 
-	"github.com/richer/q-workflow/conf"
+	"github.com/richer421/q-workflow/conf"
 
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"

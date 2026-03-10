@@ -3,9 +3,9 @@ package mysql
 import (
 	"fmt"
 
-	"github.com/richer/q-workflow/conf"
-	"github.com/richer/q-workflow/infra/mysql/dao"
-	"github.com/richer/q-workflow/infra/mysql/model"
+	"github.com/richer421/q-workflow/conf"
+	"github.com/richer421/q-workflow/infra/mysql/dao"
+	"github.com/richer421/q-workflow/infra/mysql/model"
 
 	"github.com/uptrace/opentelemetry-go-extra/otelgorm"
 	"gorm.io/driver/mysql"
@@ -55,9 +55,8 @@ func Migrate() error {
 	if DB == nil {
 		return gorm.ErrInvalidDB
 	}
-	return DB.AutoMigrate(
-		&model.HelloWorld{},
-	)
+	// TODO: Add business models
+	return nil
 }
 
 func Close() error {

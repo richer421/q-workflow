@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"runtime/debug"
 
-	"github.com/richer/q-workflow/pkg/logger"
+	"github.com/richer421/q-workflow/pkg/logger"
 
 	"github.com/gin-gonic/gin"
 )

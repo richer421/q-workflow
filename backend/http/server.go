@@ -1,10 +1,10 @@
 package http
 
 import (
-	"github.com/richer/q-workflow/conf"
-	"github.com/richer/q-workflow/http/middleware"
-	"github.com/richer/q-workflow/http/router"
-	appotel "github.com/richer/q-workflow/pkg/otel"
+	"github.com/richer421/q-workflow/conf"
+	"github.com/richer421/q-workflow/http/middleware"
+	"github.com/richer421/q-workflow/http/router"
+	appotel "github.com/richer421/q-workflow/pkg/otel"
 
 	"github.com/gin-gonic/gin"
 )

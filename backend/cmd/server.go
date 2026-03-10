@@ -9,13 +9,13 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/richer/q-workflow/conf"
-	apphttp "github.com/richer/q-workflow/http"
-	infrakafka "github.com/richer/q-workflow/infra/kafka"
-	inframysql "github.com/richer/q-workflow/infra/mysql"
-	infraredis "github.com/richer/q-workflow/infra/redis"
-	"github.com/richer/q-workflow/pkg/logger"
-	appotel "github.com/richer/q-workflow/pkg/otel"
+	"github.com/richer421/q-workflow/conf"
+	apphttp "github.com/richer421/q-workflow/http"
+	infrakafka "github.com/richer421/q-workflow/infra/kafka"
+	inframysql "github.com/richer421/q-workflow/infra/mysql"
+	infraredis "github.com/richer421/q-workflow/infra/redis"
+	"github.com/richer421/q-workflow/pkg/logger"
+	appotel "github.com/richer421/q-workflow/pkg/otel"
 
 	"github.com/spf13/cobra"
 )

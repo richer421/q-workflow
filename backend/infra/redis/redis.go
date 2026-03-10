@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/richer/q-workflow/conf"
+	"github.com/richer421/q-workflow/conf"
 
 	"github.com/go-redsync/redsync/v4"
 	"github.com/go-redsync/redsync/v4/redis/goredis/v9"

@@ -4,7 +4,7 @@ A project created by qdev
 
 ## 技术栈
 
-- **后端**: Go 1.25 + Gin + GORM Gen + Cobra（模块名: `github.com/richer/q-workflow`）
+- **后端**: Go 1.25 + Gin + GORM Gen + Cobra（模块名: `github.com/richer421/q-workflow`）
 - **前端**: React + Umi Max + Ant Design Pro
 - **基础设施**: MySQL 8.0 / Redis 7 / Kafka 3.7
 - **可观测性**: OpenTelemetry + Jaeger + Prometheus

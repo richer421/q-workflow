@@ -1,8 +1,6 @@
 package main
 
 import (
-	"github.com/richer/q-workflow/infra/mysql/model"
-
 	"gorm.io/gen"
 )
 
@@ -12,7 +10,8 @@ func main() {
 		Mode:    gen.WithDefaultQuery,
 	})
 
-	g.ApplyBasic(model.HelloWorld{})
+	// TODO: Add business models
+	// g.ApplyBasic(model.Workflow{})
 
 	g.Execute()
 }

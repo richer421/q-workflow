@@ -3,8 +3,8 @@ package cmd
 import (
 	"log"
 
-	"github.com/richer/q-workflow/conf"
-	"github.com/richer/q-workflow/pkg/logger"
+	"github.com/richer421/q-workflow/conf"
+	"github.com/richer421/q-workflow/pkg/logger"
 
 	"github.com/spf13/cobra"
 )

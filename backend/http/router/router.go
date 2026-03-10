@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"time"
 
-	infrakafka "github.com/richer/q-workflow/infra/kafka"
-	inframysql "github.com/richer/q-workflow/infra/mysql"
-	infraredis "github.com/richer/q-workflow/infra/redis"
+	infrakafka "github.com/richer421/q-workflow/infra/kafka"
+	inframysql "github.com/richer421/q-workflow/infra/mysql"
+	infraredis "github.com/richer421/q-workflow/infra/redis"
 
 	"github.com/gin-contrib/pprof"
 	"github.com/gin-gonic/gin"

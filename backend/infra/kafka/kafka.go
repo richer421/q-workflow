@@ -6,8 +6,8 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/richer/q-workflow/conf"
-	"github.com/richer/q-workflow/pkg/logger"
+	"github.com/richer421/q-workflow/conf"
+	"github.com/richer421/q-workflow/pkg/logger"
 
 	"github.com/confluentinc/confluent-kafka-go/v2/kafka"
 	"go.opentelemetry.io/otel"
@@ -17,7 +17,7 @@ import (
 	"go.opentelemetry.io/otel/trace"
 )
 
-var tracer = otel.Tracer("github.com/richer/q-workflow/infra/kafka")
+var tracer = otel.Tracer("github.com/richer421/q-workflow/infra/kafka")
 
 var (
 	Producer   *kafka.Producer

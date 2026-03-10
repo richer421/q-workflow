@@ -4,7 +4,7 @@ import (
 	"context"
 	"net/http"
 
-	"github.com/richer/q-workflow/conf"
+	"github.com/richer421/q-workflow/conf"
 
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetricgrpc"

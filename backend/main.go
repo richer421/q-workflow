@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/richer/q-workflow/cmd"
+	"github.com/richer421/q-workflow/cmd"
 )
 
 // 模板项目使用 q-dev 作为模块名，创建新项目时会被替换为用户的模块名
