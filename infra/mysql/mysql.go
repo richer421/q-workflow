@@ -5,7 +5,6 @@ import (
 
 	"github.com/richer421/q-workflow/conf"
 	"github.com/richer421/q-workflow/infra/mysql/dao"
-	"github.com/richer421/q-workflow/infra/mysql/model"
 
 	"github.com/uptrace/opentelemetry-go-extra/otelgorm"
 	"gorm.io/driver/mysql"
