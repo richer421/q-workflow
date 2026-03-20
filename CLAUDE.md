@@ -110,6 +110,9 @@ make clean          # 清理 bin/ 目录
 - 所有方法第一个参数为 `context.Context`
 - domain 层不感知 HTTP/配置，直接调用 DAO
 - app 层负责 VO ↔ Model 转换
+- 对外暴露给 `http/api` 的 app 方法统一收敛在 `app/<module>/app.go` 中
+- `app/<module>/` 下其它文件仅保留模块内的视图转换、查询封装、校验与组装函数
+- app 层文件命名统一使用 snake_case（如 `deploy_plan.go`、`instance_oam_api.go`）
 
 ### 命名规范
 

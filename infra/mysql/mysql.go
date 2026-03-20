@@ -2,6 +2,8 @@ package mysql
 
 import (
 	"fmt"
+	"regexp"
+	"strings"
 
 	"github.com/richer421/q-workflow/conf"
 	"github.com/richer421/q-workflow/infra/mysql/dao"
@@ -12,9 +14,44 @@ import (
 )
 
 var DB *gorm.DB
+var dbNameRe = regexp.MustCompile(`^[a-zA-Z0-9_]+$`)
 
 func Init(cfg conf.MySQLConfig) error {
-	// 先连接到 mysql 服务器（不指定数据库），创建数据库（如果不存在）
+	if DB != nil {
+		return nil
+	}
+
+	if cfg.Database == "" {
+		return fmt.Errorf("database config is required")
+	}
+
+	// 连接到指定数据库
+	db, err := gorm.Open(mysql.Open(cfg.DSN()), &gorm.Config{})
+	if err != nil {
+		return err
+	}
+
+	sqlDB, err := db.DB()
+	if err != nil {
+		return err
+	}
+	sqlDB.SetMaxOpenConns(cfg.MaxOpenConns)
+	sqlDB.SetMaxIdleConns(cfg.MaxIdleConns)
+
+	if err := db.Use(otelgorm.NewPlugin()); err != nil {
+		return err
+	}
+
+	DB = db
+	dao.SetDefault(db)
+	return nil
+}
+
+func Migrate(cfg conf.MySQLConfig) error {
+	if cfg.Database == "" {
+		return fmt.Errorf("database config is required")
+	}
+
 	createDB, err := gorm.Open(mysql.Open(cfg.DSNWithoutDB()), &gorm.Config{})
 	if err != nil {
 		return err
@@ -25,37 +62,28 @@ func Init(cfg conf.MySQLConfig) error {
 	}
 	defer sqlCreateDB.Close()
 
-	if err := createDB.Exec(fmt.Sprintf("CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci", cfg.Database)).Error; err != nil {
+	if err := ensureDatabase(createDB, cfg.Database); err != nil {
 		return err
 	}
 
-	// 连接到指定数据库
-	DB, err = gorm.Open(mysql.Open(cfg.DSN()), &gorm.Config{})
-	if err != nil {
+	if err := Init(cfg); err != nil {
 		return err
 	}
 
-	sqlDB, err := DB.DB()
-	if err != nil {
-		return err
-	}
-	sqlDB.SetMaxOpenConns(cfg.MaxOpenConns)
-	sqlDB.SetMaxIdleConns(cfg.MaxIdleConns)
-
-	if err := DB.Use(otelgorm.NewPlugin()); err != nil {
-		return err
-	}
-
-	dao.SetDefault(DB)
+	// TODO: Add business models
 	return nil
 }
 
-func Migrate() error {
-	if DB == nil {
-		return gorm.ErrInvalidDB
+func ensureDatabase(db *gorm.DB, name string) error {
+	if !dbNameRe.MatchString(name) {
+		return fmt.Errorf("invalid database name: %s", name)
 	}
-	// TODO: Add business models
-	return nil
+
+	sql := fmt.Sprintf(
+		"CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci",
+		strings.ReplaceAll(name, "`", "``"),
+	)
+	return db.Exec(sql).Error
 }
 
 func Close() error {
